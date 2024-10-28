@@ -1,10 +1,11 @@
-import { Box, InputAdornment, Stack, TextField, Typography } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search';
-import React from 'react'
+import { Box, InputAdornment, Stack, TextField, Typography } from '@mui/material';
+import React from 'react';
 
 import "./Home.css";
 
 const Home = (): React.JSX.Element => {
+
   return (
     <Stack direction="column" alignItems={"center"} spacing={3}>
       <Box display={"flex"} flexDirection={"column"} gap={3}>
