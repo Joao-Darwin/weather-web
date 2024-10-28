@@ -7,7 +7,7 @@ import "./NavBar.css"
 const NavBar = (): React.JSX.Element => {
     return (
         <AppBar position='static' elevation={0}>
-            <Toolbar className='toolBar' disableGutters sx={{backgroundColor: "primary.main"}}>
+            <Toolbar className='toolBar' disableGutters sx={{backgroundColor: "background.default"}}>
                 <Link to={"/"} className='link'>
                     <Typography variant='h5' fontWeight={800}>Home</Typography>
                 </Link>
