@@ -9,10 +9,10 @@ const Home = (): React.JSX.Element => {
   return (
     <Stack direction="column" alignItems={"center"} spacing={3}>
       <Box display={"flex"} flexDirection={"column"} gap={3}>
-        <Typography variant='h3' textAlign={'left'} fontWeight={600}>Previsão do Tempo</Typography>
+        <Typography variant='h3' textAlign={'left'} fontWeight={600}>Weather Web</Typography>
         <TextField
           type='search'
-          placeholder='Insira aqui o nome da cidade'
+          placeholder='Enter city name here'
           className='textField'
           slotProps={{
             input: {

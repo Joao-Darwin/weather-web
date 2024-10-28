@@ -9,10 +9,10 @@ const NavBar = (): React.JSX.Element => {
         <AppBar position='static' elevation={0}>
             <Toolbar className='toolBar' disableGutters sx={{backgroundColor: "primary.main"}}>
                 <Link to={"/"} className='link'>
-                    <Typography variant='h5' fontWeight={800}>Início</Typography>
+                    <Typography variant='h5' fontWeight={800}>Home</Typography>
                 </Link>
                 <Link to={"/about"} className='link'>
-                    <Typography variant='h5' fontWeight={800}>Sobre</Typography>
+                    <Typography variant='h5' fontWeight={800}>About</Typography>
                 </Link>
             </Toolbar>
         </AppBar>
