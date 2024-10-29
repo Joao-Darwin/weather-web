@@ -1,14 +1,14 @@
 import { Container, Divider } from '@mui/material'
-import { useContext } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
 import NavBar from './components/NavBar/NavBar'
-import { CustomThemeProvider, ThemeContext } from './contexts/ThemeContext'
+import { CustomThemeProvider } from './contexts/ThemeContext'
+import useCustomTheme from './hooks/useCustomTheme'
 import About from './pages/About'
 import Home from './pages/Home/Home'
 
 function App() {
-  const {theme} = useContext(ThemeContext);
+  const theme = useCustomTheme();
 
   return (
     <CustomThemeProvider>
