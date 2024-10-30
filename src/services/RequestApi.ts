@@ -13,8 +13,8 @@ const getCurrentWeather = async (city: string): Promise<Weather> => {
 
     return {
         description: response.condition.text,
-        temperature: response.temp_c,
-        wind: response.wind_kph
+        temperature: Number.parseFloat(response.temp_c).toFixed(1).toString(),
+        wind:Number.parseFloat(response.wind_kph).toFixed(1).toString()
     }
 }
 

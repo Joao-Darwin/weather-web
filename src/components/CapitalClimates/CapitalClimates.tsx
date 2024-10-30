@@ -1,5 +1,6 @@
 import AirIcon from '@mui/icons-material/Air';
 import ThermostatIcon from '@mui/icons-material/Thermostat';
+import CloudIcon from '@mui/icons-material/Cloud';
 import { Divider, Grid2, Stack, Tooltip, Typography } from "@mui/material";
 import React, { useLayoutEffect, useState } from "react";
 import useCustomTheme from "../../hooks/useCustomTheme";
@@ -21,13 +22,16 @@ const GridIcons = ({ disappearOnMobile }: Props): React.JSX.Element => {
         <Grid2
             size={{ xs: 12, md: 6, sm: 6 }}
             display={disappearOnMobile ? { xs: 'none', sm: 'flex' } : "flex"}
-            gap={5}
+            gap={7}
         >
             <Tooltip title="Temperature">
                 <ThermostatIcon />
             </Tooltip>
             <Tooltip title="Wind">
                 <AirIcon />
+            </Tooltip>
+            <Tooltip title="Climate">
+                <CloudIcon />
             </Tooltip>
         </Grid2>
     )
@@ -68,11 +72,14 @@ const CapitalClimates = (): React.JSX.Element => {
                 {
                     weatherData ? (
                         capitals.map((capital, index) => (
-                            <Grid2 key={index} size={{ xs: 12, sm: 6 }} display={"flex"}>
+                            <Grid2 key={index} size={{ xs: 12, sm: 6 }}>
                                 {weatherData[capital] && (
-                                    <Typography variant="h6" gutterBottom>
-                                        {weatherData[capital].temperature} ºC {weatherData[capital].wind} km/h {capital}
-                                    </Typography>
+                                    <Stack direction={'row'} spacing={2}>
+                                        <Typography>{weatherData[capital].temperature} ºC</Typography>
+                                        <Typography>{weatherData[capital].wind} km/h</Typography>
+                                        <Typography>{weatherData[capital].description}</Typography>
+                                        <Typography fontWeight={600}>{capital}</Typography>
+                                    </Stack>
                                 )}
                             </Grid2>
                         ))
