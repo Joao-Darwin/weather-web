@@ -1,6 +1,6 @@
 import AirIcon from '@mui/icons-material/Air';
 import ThermostatIcon from '@mui/icons-material/Thermostat';
-import { Divider, Grid2, Stack, Typography } from "@mui/material";
+import { Divider, Grid2, Stack, Tooltip, Typography } from "@mui/material";
 import React, { useLayoutEffect, useState } from "react";
 import useCustomTheme from "../../hooks/useCustomTheme";
 import Weather from "../../interfaces/Weather";
@@ -41,12 +41,20 @@ const CapitalClimates = (): React.JSX.Element => {
             <Typography variant='h4' textAlign={'left'} fontWeight={600}>Brazil Capitals</Typography>
             <Grid2 container>
                 <Grid2 size={{ xs: 12, md: 6, sm: 6 }} display={"flex"}>
-                    <ThermostatIcon />
-                    <AirIcon />
+                    <Tooltip title="Temperature">
+                        <ThermostatIcon />
+                    </Tooltip>
+                    <Tooltip title="Wind">
+                        <AirIcon />
+                    </Tooltip>
                 </Grid2>
                 <Grid2 size={{ md: 6, sm: 6, xs: 0 }} display={{ xs: 'none', sm: 'flex' }}>
-                    <ThermostatIcon />
-                    <AirIcon />
+                    <Tooltip title="Temperature">
+                        <ThermostatIcon />
+                    </Tooltip>
+                    <Tooltip title="Wind">
+                        <AirIcon />
+                    </Tooltip>
                 </Grid2>
             </Grid2>
             {weatherData && <Grid2 container>
