@@ -1,20 +1,8 @@
 .textField {
-    color: black;
     width: 100%;
-    background-color: white;
     border-radius: 5px;
 }
 
 .inputAdornment {
-    border-width: 1px;
-    border-color: rgb(189, 189, 189);
-    border-style: solid;
-    border-radius: 5px;
-    padding: 5px;
     cursor: pointer;
-    transition: 0.5s;
-}
-
-.inputAdornment:hover {
-    background-color: rgb(189, 189, 189);
 }

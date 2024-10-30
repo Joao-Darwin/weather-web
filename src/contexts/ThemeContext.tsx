@@ -13,15 +13,28 @@ const lightTheme = createTheme({
       main: '#E7AD99',
     },
     secondary: {
-      main: '#ffffff',
+      main: '#000000',
     },
     background: {
-      default: '#E7AD99'
+      default: '#E7AD99',
+      paper: '#F4E8E1'
     },
     text: {
       primary: '#000000',
-      secondary: '#fffff'
-    }
+      secondary: '#ffffff'
+    },
+    error: {
+      main: '#D32F2F',
+    },
+    warning: {
+      main: '#ED6C02',
+    },
+    info: {
+      main: '#0288D1',
+    },
+    success: {
+      main: '#2E7D32',
+    },
   },
 });
 
@@ -34,14 +47,28 @@ const darkTheme = createTheme({
       main: '#ffffff',
     },
     background: {
-      default: '#191919'
+      default: '#191919',
+      paper: '#333333'
     },
     text: {
       primary: '#ffffff',
-      secondary: '#ffffff'
-    }
+      secondary: '#B0BEC5'
+    },
+    error: {
+      main: '#CF6679',
+    },
+    warning: {
+      main: '#FFA000',
+    },
+    info: {
+      main: '#4FC3F7',
+    },
+    success: {
+      main: '#66BB6A',
+    },
   },
 });
+
 
 export const ThemeContext = createContext<IThemeContext>({
   theme: lightTheme,

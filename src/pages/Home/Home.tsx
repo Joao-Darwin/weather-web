@@ -30,6 +30,9 @@ const Home = (): React.JSX.Element => {
             className='textField'
             value={cityName}
             onChange={handleCityName}
+            style={{
+              border: "1px solid"
+            }}
             slotProps={{
               input: {
                 endAdornment: <InputAdornment
@@ -37,7 +40,7 @@ const Home = (): React.JSX.Element => {
                   onClick={handleRequest}
                   className='inputAdornment'
                 >
-                  <SearchIcon />
+                  <SearchIcon color="secondary" />
                 </InputAdornment>
               }
             }}

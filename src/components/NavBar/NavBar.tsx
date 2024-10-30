@@ -1,12 +1,12 @@
 import Brightness4Icon from '@mui/icons-material/Brightness4';
-import { AppBar, Stack, Toolbar, Tooltip, Typography } from '@mui/material';
+import { AppBar, Divider, Stack, Toolbar, Tooltip, Typography } from '@mui/material';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import "./NavBar.css";
 import useCustomTheme from '../../hooks/useCustomTheme';
 
 const NavBar = (): React.JSX.Element => {
-    const { toggleTheme } = useCustomTheme();
+    const { theme, toggleTheme } = useCustomTheme();
     return (
         <AppBar position='static' elevation={0}>
             <Toolbar className='toolBar' disableGutters >
@@ -22,6 +22,7 @@ const NavBar = (): React.JSX.Element => {
                     <Brightness4Icon onClick={toggleTheme} style={{ cursor: "pointer" }} />
                 </Tooltip>
             </Toolbar>
+            <Divider color={theme.palette.text.primary} variant='fullWidth' style={{marginBottom: 40, height: 2}} />
         </AppBar>
     )
 }
