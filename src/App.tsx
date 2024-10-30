@@ -8,7 +8,7 @@ import About from './pages/About'
 import Home from './pages/Home/Home'
 
 function App() {
-  const theme = useCustomTheme();
+  const { theme } = useCustomTheme();
 
   return (
     <CustomThemeProvider>
@@ -16,9 +16,9 @@ function App() {
         <Container maxWidth="md" style={{ backgroundColor: "transparent" }}>
           <NavBar />
           <Divider
-            color={theme.palette.secondary.main}
+            color={theme.palette.text.primary}
             variant='fullWidth'
-            style={{ marginBottom: 20, height: 4 }}
+            style={{ marginBottom: 40, height: 4 }}
           />
           <Routes>
             <Route path='/' Component={Home} />

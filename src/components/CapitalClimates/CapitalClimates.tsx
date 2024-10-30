@@ -38,7 +38,7 @@ const GridIcons = ({ disappearOnMobile }: Props): React.JSX.Element => {
 }
 
 const CapitalClimates = (): React.JSX.Element => {
-    const theme = useCustomTheme();
+    const { theme } = useCustomTheme();
     const [weatherData, setWeatherData] = useState<Record<string, Weather | null>>({});
 
     useLayoutEffect(() => {
@@ -62,7 +62,7 @@ const CapitalClimates = (): React.JSX.Element => {
 
     return (
         <Stack marginTop={8} spacing={2}>
-            <Divider color={theme.palette.secondary.main} variant='fullWidth' />
+            <Divider color={theme.palette.text.primary} variant='fullWidth' />
             <Typography variant='h4' textAlign={'left'} fontWeight={600}>Brazil Capitals</Typography>
             <Grid2 container>
                 <GridIcons />

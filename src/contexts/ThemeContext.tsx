@@ -2,25 +2,25 @@ import { createTheme, CssBaseline, Theme, ThemeProvider } from '@mui/material';
 import React, { createContext, useMemo, useState } from 'react';
 
 interface IThemeContext {
-    theme: Theme,
-    isDarkMode: boolean,
-    toggleTheme: () => void
+  theme: Theme,
+  isDarkMode: boolean,
+  toggleTheme: () => void
 }
 
 const lightTheme = createTheme({
   palette: {
     primary: {
-      main: '#e37b4f',
+      main: '#E7AD99',
     },
     secondary: {
       main: '#ffffff',
     },
     background: {
-        default: '#e37b4f'
+      default: '#E7AD99'
     },
     text: {
-        primary: '#fffff',
-        secondary: '#fffff'
+      primary: '#000000',
+      secondary: '#fffff'
     }
   },
 });
@@ -28,30 +28,29 @@ const lightTheme = createTheme({
 const darkTheme = createTheme({
   palette: {
     primary: {
-      main: '#e37b4f',
+      main: '#191919',
     },
     secondary: {
       main: '#ffffff',
     },
     background: {
-        default: '#e37b4f'
+      default: '#191919'
     },
     text: {
-        primary: '#000000',
-        secondary: '#fffff'
+      primary: '#ffffff',
+      secondary: '#ffffff'
     }
-
   },
 });
 
 export const ThemeContext = createContext<IThemeContext>({
-    theme: lightTheme,
-    isDarkMode: false,
-    toggleTheme: () => {}
+  theme: lightTheme,
+  isDarkMode: false,
+  toggleTheme: () => { }
 });
 
 interface Props {
-    children: React.JSX.Element | React.JSX.Element[]
+  children: React.JSX.Element | React.JSX.Element[]
 }
 
 export const CustomThemeProvider = ({ children }: Props): React.JSX.Element => {
