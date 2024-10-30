@@ -6,7 +6,11 @@ import useCustomTheme from "../../hooks/useCustomTheme";
 import Weather from "../../interfaces/Weather";
 import RequestApi from '../../services/RequestApi';
 
-const capitals = ["Fortaleza", "Joao Pessoa", "Recife", "Sao Paulo", "Salvador", "Rio de Janeiro", "Minas Gerais", "Natal"]
+const capitals = [
+    "Aracaju", "Belém", "Belo Horizonte", "Boa Vista", "Brasília", "Cuiabá", "Curitiba",
+    "Florianópolis", "Fortaleza", "João Pessoa", "Manaus", "Natal", "Porto Alegre", "Recife", "Rio de Janeiro", "Salvador",
+    "São Luís", "São Paulo", "Teresina", "Vitória"
+]
 
 const CapitalClimates = (): React.JSX.Element => {
     const theme = useCustomTheme();
