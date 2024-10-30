@@ -12,6 +12,27 @@ const capitals = [
     "São Luís", "São Paulo", "Teresina", "Vitória"
 ]
 
+interface Props {
+    disappearOnMobile?: boolean
+}
+
+const GridIcons = ({ disappearOnMobile }: Props): React.JSX.Element => {
+    return (
+        <Grid2
+            size={{ xs: 12, md: 6, sm: 6 }}
+            display={disappearOnMobile ? { xs: 'none', sm: 'flex' } : "flex"}
+            gap={5}
+        >
+            <Tooltip title="Temperature">
+                <ThermostatIcon />
+            </Tooltip>
+            <Tooltip title="Wind">
+                <AirIcon />
+            </Tooltip>
+        </Grid2>
+    )
+}
+
 const CapitalClimates = (): React.JSX.Element => {
     const theme = useCustomTheme();
     const [weatherData, setWeatherData] = useState<Record<string, Weather | null>>({});
@@ -40,22 +61,8 @@ const CapitalClimates = (): React.JSX.Element => {
             <Divider color={theme.palette.secondary.main} variant='fullWidth' />
             <Typography variant='h4' textAlign={'left'} fontWeight={600}>Brazil Capitals</Typography>
             <Grid2 container>
-                <Grid2 size={{ xs: 12, md: 6, sm: 6 }} display={"flex"}>
-                    <Tooltip title="Temperature">
-                        <ThermostatIcon />
-                    </Tooltip>
-                    <Tooltip title="Wind">
-                        <AirIcon />
-                    </Tooltip>
-                </Grid2>
-                <Grid2 size={{ md: 6, sm: 6, xs: 0 }} display={{ xs: 'none', sm: 'flex' }}>
-                    <Tooltip title="Temperature">
-                        <ThermostatIcon />
-                    </Tooltip>
-                    <Tooltip title="Wind">
-                        <AirIcon />
-                    </Tooltip>
-                </Grid2>
+                <GridIcons />
+                <GridIcons disappearOnMobile />
             </Grid2>
             {weatherData && <Grid2 container>
                 {
