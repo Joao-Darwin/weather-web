@@ -13,9 +13,13 @@ function App() {
   return (
     <CustomThemeProvider>
       <BrowserRouter>
-        <Container maxWidth="md" style={{backgroundColor: "transparent"}}>
+        <Container maxWidth="md" style={{ backgroundColor: "transparent" }}>
           <NavBar />
-          <Divider color={theme.palette.secondary.main} variant='fullWidth' style={{ marginBottom: 20 }} />
+          <Divider
+            color={theme.palette.secondary.main}
+            variant='fullWidth'
+            style={{ marginBottom: 20, height: 4 }}
+          />
           <Routes>
             <Route path='/' Component={Home} />
             <Route path='/about' Component={About} />

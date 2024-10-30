@@ -2,19 +2,15 @@ import AirIcon from '@mui/icons-material/Air';
 import ThermostatIcon from '@mui/icons-material/Thermostat';
 import { Divider, Grid2, Stack, Typography } from "@mui/material";
 import React, { useLayoutEffect, useState } from "react";
-import api from "../../api/api";
 import useCustomTheme from "../../hooks/useCustomTheme";
 import Weather from "../../interfaces/Weather";
+import RequestApi from '../../services/RequestApi';
 
-const capitals = ["Fortaleza", "Joao Pessoa", "Recife", "Salvador", "Rio de Janeiro", "Minas Gerais", "Natal"]
+const capitals = ["Fortaleza", "Joao Pessoa", "Recife", "Sao Paulo", "Salvador", "Rio de Janeiro", "Minas Gerais", "Natal"]
 
 const CapitalClimates = (): React.JSX.Element => {
     const theme = useCustomTheme();
     const [weatherData, setWeatherData] = useState<Record<string, Weather | null>>({});
-
-    const handleRequest = async (city: string): Promise<Weather> => {
-        return (await api.get(`/${city}`)).data;
-    }
 
     useLayoutEffect(() => {
         const fetchWeatherData = async () => {
@@ -22,7 +18,7 @@ const CapitalClimates = (): React.JSX.Element => {
 
             for (const capital of capitals) {
                 try {
-                    const weather = await handleRequest(capital);
+                    const weather = await RequestApi.getCurrentWeather(capital);
                     data[capital] = weather;
                 } catch (error) {
                     data[capital] = null;
@@ -55,8 +51,8 @@ const CapitalClimates = (): React.JSX.Element => {
                         capitals.map((capital, index) => (
                             <Grid2 key={index} size={{ xs: 12, sm: 6 }} display={"flex"}>
                                 {weatherData[capital] && (
-                                    <Typography variant="h6">
-                                        {weatherData[capital].temperature} {weatherData[capital].wind} {capital}
+                                    <Typography variant="h6" gutterBottom>
+                                        {weatherData[capital].temperature} ºC {weatherData[capital].wind} km/h {capital}
                                     </Typography>
                                 )}
                             </Grid2>
