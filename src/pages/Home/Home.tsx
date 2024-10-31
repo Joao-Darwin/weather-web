@@ -21,7 +21,7 @@ const Home = (): React.JSX.Element => {
 
   return (
     <>
-      <Stack direction="column" alignItems={"center"} spacing={3}>
+      <Stack direction="column" alignItems={"center"} spacing={6}>
         <Box display={"flex"} flexDirection={"column"} gap={6}>
           <Typography variant='h3' textAlign={'left'} fontWeight={600}>Weather Web</Typography>
           <TextField
@@ -46,8 +46,8 @@ const Home = (): React.JSX.Element => {
             }}
           />
         </Box>
+        <CapitalClimates />
       </Stack>
-      <CapitalClimates />
     </>
   )
 }

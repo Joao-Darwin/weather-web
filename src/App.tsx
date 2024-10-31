@@ -10,7 +10,7 @@ function App() {
   return (
     <CustomThemeProvider>
       <BrowserRouter>
-        <Container maxWidth="md" style={{ backgroundColor: "transparent" }}>
+        <Container maxWidth="md">
           <NavBar />
           <Routes>
             <Route path='/' Component={Home} />

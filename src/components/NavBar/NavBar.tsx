@@ -7,6 +7,7 @@ import useCustomTheme from '../../hooks/useCustomTheme';
 
 const NavBar = (): React.JSX.Element => {
     const { theme, toggleTheme } = useCustomTheme();
+    
     return (
         <AppBar position='static' elevation={0}>
             <Toolbar className='toolBar' disableGutters >
