@@ -61,7 +61,7 @@ const CapitalClimates = (): React.JSX.Element => {
     }, []);
 
     return (
-        <Stack spacing={2}>
+        <Stack spacing={2} width={"100%"} >
             <Divider color={theme.palette.text.primary} variant='fullWidth' />
             <Typography variant='h4' textAlign={'left'} fontWeight={600}>Brazil Capitals</Typography>
             <Grid2 container>
