@@ -2,12 +2,13 @@ import SearchIcon from '@mui/icons-material/Search';
 import { Box, InputAdornment, Stack, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
 
-import api from '../../api/api';
 import CapitalClimates from '../../components/CapitalClimates/CapitalClimates';
-import Weather from '../../interfaces/Weather';
+import CompleteWeather from '../../interfaces/CompleteWeather';
+import RequestApi from '../../services/RequestApi';
 import "./Home.css";
 
 const Home = (): React.JSX.Element => {
+  const [weatherCity, setWeatherCity] = useState<CompleteWeather | null>(null);
   const [cityName, setCityName] = useState<string>('');
 
   const handleCityName = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -15,8 +16,8 @@ const Home = (): React.JSX.Element => {
   }
 
   const handleRequest = async () => {
-    const response: Weather = await (await api.get(`/${cityName}`)).data
-    console.log(response)
+    const response: CompleteWeather = await RequestApi.getCurrentWeatherWithForecats(cityName);
+    setWeatherCity(response);
   }
 
   return (

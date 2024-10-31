@@ -1,7 +1,7 @@
 interface Forecast {
-    day: string,
-    temperature: string,
-    wind: string
+    date: string,
+    maxtemp: string,
+    mintemp: string
 }
 
 export default Forecast;
