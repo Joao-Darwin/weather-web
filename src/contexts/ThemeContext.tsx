@@ -10,13 +10,13 @@ interface IThemeContext {
 const lightTheme = createTheme({
   palette: {
     primary: {
-      main: '#E7AD99',
+      main: '#E3D985',
     },
     secondary: {
       main: '#000000',
     },
     background: {
-      default: '#E7AD99',
+      default: '#E3D985',
       paper: '#F4E8E1'
     },
     text: {
