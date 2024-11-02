@@ -1,26 +1,47 @@
 import SearchIcon from '@mui/icons-material/Search';
-import { Box, Divider, IconButton, InputAdornment, Paper, Stack, TextField, Typography } from '@mui/material';
-import React, { useState } from 'react';
+import { Alert, Box, Collapse, Divider, IconButton, InputAdornment, Paper, Stack, TextField, Typography } from '@mui/material';
+import React, { useEffect, useState } from 'react';
 
 import { ArrowDownward, ArrowUpward, Close } from '@mui/icons-material';
 import CapitalClimates from '../../components/CapitalClimates/CapitalClimates';
+import SimpleForecast from '../../components/SimpleForecast/SimpleForecast';
+import useCustomTheme from '../../hooks/useCustomTheme';
 import CompleteWeather from '../../interfaces/CompleteWeather';
 import RequestApi from '../../services/RequestApi';
 import "./Home.css";
-import SimpleForecast from '../../components/SimpleForecast/SimpleForecast';
 
 const Home = (): React.JSX.Element => {
+  const { theme } = useCustomTheme();
   const [weatherCity, setWeatherCity] = useState<CompleteWeather | null>(null);
   const [cityName, setCityName] = useState<string>('');
+  const [showAlert, setShowAlert] = useState<boolean>(false);
 
   const handleCityName = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setCityName(event.target.value);
   }
 
   const handleRequest = async () => {
-    const response: CompleteWeather = await RequestApi.getCurrentWeatherWithForecats(cityName);
-    setWeatherCity(response);
+    try {
+      const weather = await RequestApi.getCurrentWeatherWithForecats(cityName);
+      setWeatherCity(weather)
+    } catch (error) {
+      setShowAlert(true)
+    }
   }
+
+  const clearCityNameInput = () => {
+    setCityName("")
+  }
+
+  useEffect(() => {
+    if (showAlert) {
+      const timer = setTimeout(() => {
+        setShowAlert(false);
+      }, 5000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [showAlert]);
 
   return (
     <>
@@ -54,7 +75,10 @@ const Home = (): React.JSX.Element => {
             <Stack spacing={3} textAlign={"start"}>
               <Stack direction={'row'} alignItems={'center'} justifyContent={"space-between"}>
                 <Typography fontWeight={600}>{weatherCity.location.name}, {weatherCity.location.region} - {weatherCity.location.country}</Typography>
-                <IconButton onClick={() => setWeatherCity(null)}>
+                <IconButton onClick={() => {
+                  setWeatherCity(null);
+                  clearCityNameInput();
+                }}>
                   <Close color='secondary' />
                 </IconButton>
               </Stack>
@@ -138,6 +162,18 @@ const Home = (): React.JSX.Element => {
             }}
           />
         </Box>
+        <Collapse in={showAlert}>
+          <Alert
+            severity='error'
+            onClose={() => {
+              setShowAlert(false);
+              clearCityNameInput();
+            }}
+            sx={{ bgcolor: theme.palette.background.paper, color: theme.palette.secondary.main }}
+          >
+            City's name is not valid!
+          </Alert>
+        </Collapse>
         <CapitalClimates />
       </Stack>
     </>
