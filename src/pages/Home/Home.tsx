@@ -2,11 +2,11 @@ import SearchIcon from '@mui/icons-material/Search';
 import { Box, IconButton, InputAdornment, Paper, Stack, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
 
+import { ArrowDownward, ArrowUpward, Close } from '@mui/icons-material';
 import CapitalClimates from '../../components/CapitalClimates/CapitalClimates';
 import CompleteWeather from '../../interfaces/CompleteWeather';
 import RequestApi from '../../services/RequestApi';
 import "./Home.css";
-import { Close } from '@mui/icons-material';
 
 const Home = (): React.JSX.Element => {
   const [weatherCity, setWeatherCity] = useState<CompleteWeather | null>(null);
@@ -41,13 +41,42 @@ const Home = (): React.JSX.Element => {
             paddingLeft: {
               sm: "8%",
               xl: "8%"
+            },
+            paddingRight: {
+              sm: "8%",
+              xl: "8%"
             }
           }}>
-            <Stack direction={'row'} alignItems={'center'} justifyContent={"space-between"}>
-              <Typography fontWeight={600}>{weatherCity.location.name}, {weatherCity.location.region} - {weatherCity.location.country}</Typography>
-              <IconButton onClick={() => setWeatherCity(null)}>
-                <Close color='secondary' />
-              </IconButton>
+            <Stack spacing={2} textAlign={"start"}>
+              <Stack direction={'row'} alignItems={'center'} justifyContent={"space-between"}>
+                <Typography fontWeight={600}>{weatherCity.location.name}, {weatherCity.location.region} - {weatherCity.location.country}</Typography>
+                <IconButton onClick={() => setWeatherCity(null)}>
+                  <Close color='secondary' />
+                </IconButton>
+              </Stack>
+              <Typography variant='h3' fontWeight={600}>
+                {weatherCity.current.temperature}ºC {weatherCity.current.condition}
+              </Typography>
+              <Stack direction={"row"} justifyContent={"space-between"}>
+                <Stack direction={"row"} spacing={2}>
+                  <Box flexDirection={"row"} display={"flex"}>
+                    <ArrowDownward />
+                    <Typography fontWeight={600}>{weatherCity.current.mintemp}º</Typography>
+                  </Box>
+                  <Box flexDirection={"row"} display={"flex"}>
+                    <ArrowUpward />
+                    <Typography fontWeight={600}>{weatherCity.current.maxtemp}º</Typography>
+                  </Box>
+                </Stack>
+                <Stack direction={"row"} spacing={1}>
+                  <Typography>
+                    Sensation
+                  </Typography>
+                  <Typography fontWeight={600}>
+                    {weatherCity.current.feelslike}º
+                  </Typography>
+                </Stack>
+              </Stack>
             </Stack>
           </Paper>
         }
