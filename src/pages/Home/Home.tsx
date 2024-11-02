@@ -99,7 +99,7 @@ const Home = (): React.JSX.Element => {
                   </Typography>
                 </Stack>
               </Stack>
-              <Divider variant='fullWidth' />
+              <Divider color='primary' />
               <Stack direction={"row"} justifyContent={'space-between'}>
                 {weatherCity.forecast.map((forecast, index) => {
                   return (

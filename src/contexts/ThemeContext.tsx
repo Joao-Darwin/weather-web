@@ -19,6 +19,7 @@ const lightTheme = createTheme({
       default: '#E3D985',
       paper: '#F3F0CE'
     },
+    divider: "#000000",
     text: {
       primary: '#000000',
       secondary: '#ffffff'
@@ -50,6 +51,7 @@ const darkTheme = createTheme({
       default: '#191919',
       paper: '#333333'
     },
+    divider: "#ffffff",
     text: {
       primary: '#ffffff',
       secondary: '#B0BEC5'
