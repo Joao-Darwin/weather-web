@@ -7,10 +7,16 @@ interface Props {
     maxtemp: string
 }
 
-const SimpleForecast = ({ date, mintemp, maxtemp }: Props):React.JSX.Element => {
+const getDayNameFromDate = (dateString: string): string => {
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const date = new Date(dateString);
+    return days[date.getDay()];
+}
+
+const SimpleForecast = ({ date, mintemp, maxtemp }: Props): React.JSX.Element => {
     return (
         <Stack spacing={1}>
-            <Typography fontWeight={600}>{date}</Typography>
+            <Typography fontWeight={600}>{getDayNameFromDate(date)}</Typography>
             <Stack direction={"row"} spacing={1}>
                 <Typography fontWeight={600}>{mintemp}º</Typography>
                 <Typography fontWeight={600}>{maxtemp}º</Typography>
