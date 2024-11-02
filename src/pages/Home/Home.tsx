@@ -7,6 +7,7 @@ import CapitalClimates from '../../components/CapitalClimates/CapitalClimates';
 import CompleteWeather from '../../interfaces/CompleteWeather';
 import RequestApi from '../../services/RequestApi';
 import "./Home.css";
+import SimpleForecast from '../../components/SimpleForecast/SimpleForecast';
 
 const Home = (): React.JSX.Element => {
   const [weatherCity, setWeatherCity] = useState<CompleteWeather | null>(null);
@@ -24,6 +25,7 @@ const Home = (): React.JSX.Element => {
   return (
     <>
       <Stack direction="column" alignItems={"center"} spacing={6}>
+        <Typography variant='h3' textAlign={'left'} fontWeight={600}>Weather Web</Typography>
         {weatherCity &&
           <Paper sx={{
             width: {
@@ -33,21 +35,23 @@ const Home = (): React.JSX.Element => {
               lg: "60%",
               xl: "70%"
             },
-            height: "400px",
+            height: "390px",
             padding: {
               xs: "10px",
               xl: "2%"
             },
             paddingLeft: {
+              xs: "8%",
               sm: "8%",
               xl: "8%"
             },
             paddingRight: {
+              xs: "8%",
               sm: "8%",
               xl: "8%"
             }
           }}>
-            <Stack spacing={2} textAlign={"start"}>
+            <Stack spacing={3} textAlign={"start"}>
               <Stack direction={'row'} alignItems={'center'} justifyContent={"space-between"}>
                 <Typography fontWeight={600}>{weatherCity.location.name}, {weatherCity.location.region} - {weatherCity.location.country}</Typography>
                 <IconButton onClick={() => setWeatherCity(null)}>
@@ -77,7 +81,7 @@ const Home = (): React.JSX.Element => {
                   </Typography>
                 </Stack>
               </Stack>
-              <Stack direction={"row"} spacing={8}>
+              <Stack direction={"row"} spacing={10}>
                 <Stack direction={"row"} spacing={1}>
                   <Typography>
                     Wind
@@ -96,11 +100,22 @@ const Home = (): React.JSX.Element => {
                 </Stack>
               </Stack>
               <Divider variant='fullWidth' />
+              <Stack direction={"row"} justifyContent={'space-between'}>
+                {weatherCity.forecast.map((forecast, index) => {
+                  return (
+                    <SimpleForecast
+                      key={index}
+                      date={forecast.date}
+                      mintemp={forecast.mintemp}
+                      maxtemp={forecast.maxtemp}
+                    />
+                  )
+                })}
+              </Stack>
             </Stack>
           </Paper>
         }
         <Box display={"flex"} flexDirection={"column"} gap={6}>
-          <Typography variant='h3' textAlign={'left'} fontWeight={600}>Weather Web</Typography>
           <TextField
             type='text'
             placeholder='Enter city name here'
