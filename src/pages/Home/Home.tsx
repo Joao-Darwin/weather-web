@@ -1,5 +1,5 @@
 import SearchIcon from '@mui/icons-material/Search';
-import { Box, IconButton, InputAdornment, Paper, Stack, TextField, Typography } from '@mui/material';
+import { Box, Divider, IconButton, InputAdornment, Paper, Stack, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
 
 import { ArrowDownward, ArrowUpward, Close } from '@mui/icons-material';
@@ -57,7 +57,7 @@ const Home = (): React.JSX.Element => {
               <Typography variant='h3' fontWeight={600}>
                 {weatherCity.current.temperature}ºC {weatherCity.current.condition}
               </Typography>
-              <Stack direction={"row"} justifyContent={"space-between"}>
+              <Stack direction={"row"} spacing={5}>
                 <Stack direction={"row"} spacing={2}>
                   <Box flexDirection={"row"} display={"flex"}>
                     <ArrowDownward />
@@ -77,6 +77,25 @@ const Home = (): React.JSX.Element => {
                   </Typography>
                 </Stack>
               </Stack>
+              <Stack direction={"row"} spacing={8}>
+                <Stack direction={"row"} spacing={1}>
+                  <Typography>
+                    Wind
+                  </Typography>
+                  <Typography fontWeight={600}>
+                    {weatherCity.current.wind_kph}km/h
+                  </Typography>
+                </Stack>
+                <Stack direction={"row"} spacing={1}>
+                  <Typography>
+                    Humidity
+                  </Typography>
+                  <Typography fontWeight={600}>
+                    {weatherCity.current.humidity}º
+                  </Typography>
+                </Stack>
+              </Stack>
+              <Divider variant='fullWidth' />
             </Stack>
           </Paper>
         }
