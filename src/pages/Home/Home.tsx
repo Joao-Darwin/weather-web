@@ -147,7 +147,8 @@ const Home = (): React.JSX.Element => {
             value={cityName}
             onChange={handleCityName}
             style={{
-              border: "1px solid"
+              border: "1px solid",
+              backgroundColor: theme.palette.background.paper
             }}
             slotProps={{
               input: {
