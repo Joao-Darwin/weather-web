@@ -1,8 +1,8 @@
 import AirIcon from '@mui/icons-material/Air';
-import ThermostatIcon from '@mui/icons-material/Thermostat';
 import CloudIcon from '@mui/icons-material/Cloud';
-import { Divider, Grid2, Stack, Tooltip, Typography } from "@mui/material";
-import React, { useLayoutEffect, useState } from "react";
+import ThermostatIcon from '@mui/icons-material/Thermostat';
+import { Divider, Grid2, Skeleton, Stack, Tooltip, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
 import useCustomTheme from "../../hooks/useCustomTheme";
 import Weather from "../../interfaces/Weather";
 import RequestApi from '../../services/RequestApi';
@@ -39,10 +39,12 @@ const GridIcons = ({ disappearOnMobile }: Props): React.JSX.Element => {
 
 const CapitalClimates = (): React.JSX.Element => {
     const { theme } = useCustomTheme();
+    const [isLoading, setIsLoading] = useState<boolean>(false);
     const [weatherData, setWeatherData] = useState<Record<string, Weather | null>>({});
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         const fetchWeatherData = async () => {
+            setIsLoading(true);
             const data: Record<string, Weather | null> = {};
 
             for (const capital of capitals) {
@@ -55,6 +57,7 @@ const CapitalClimates = (): React.JSX.Element => {
             }
 
             setWeatherData(data);
+            setIsLoading(false);
         };
 
         fetchWeatherData();
@@ -68,26 +71,37 @@ const CapitalClimates = (): React.JSX.Element => {
                 <GridIcons />
                 <GridIcons disappearOnMobile />
             </Grid2>
-            {weatherData && <Grid2 container>
-                {
-                    weatherData ? (
-                        capitals.map((capital, index) => (
-                            <Grid2 key={index} size={{ xs: 12, sm: 6 }}>
-                                {weatherData[capital] && (
-                                    <Stack direction={'row'} spacing={2}>
-                                        <Typography>{weatherData[capital].temperature} ºC</Typography>
-                                        <Typography>{weatherData[capital].wind} km/h</Typography>
-                                        <Typography>{weatherData[capital].description}</Typography>
-                                        <Typography fontWeight={600}>{capital}</Typography>
-                                    </Stack>
-                                )}
-                            </Grid2>
-                        ))
-                    ) : (
-                        <Typography variant="body2" color="error">Erro ao carregar dados</Typography>
-                    )
-                }
-            </Grid2>}
+            {isLoading ? (
+                capitals.map((_value, index) => (
+                    <Skeleton key={index} variant='rounded' sx={{
+                        width: {
+                            xs: "100%"
+                        },
+                        height: "24px"
+                    }} />
+                ))
+            ) : (
+                <Grid2 container spacing={1}>
+                    {
+                        weatherData ? (
+                            capitals.map((capital, index) => (
+                                <Grid2 key={index} size={{ xs: 12, sm: 6 }}>
+                                    {weatherData[capital] && (
+                                        <Stack direction={'row'} spacing={2}>
+                                            <Typography>{weatherData[capital].temperature} ºC</Typography>
+                                            <Typography>{weatherData[capital].wind} km/h</Typography>
+                                            <Typography>{weatherData[capital].description}</Typography>
+                                            <Typography fontWeight={600}>{capital}</Typography>
+                                        </Stack>
+                                    )}
+                                </Grid2>
+                            ))
+                        ) : (
+                            <Typography variant="body2" color="error">Erro ao carregar dados</Typography>
+                        )
+                    }
+                </Grid2>
+            )}
         </Stack>
     );
 }
