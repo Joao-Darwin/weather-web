@@ -1,4 +1,4 @@
-import { Stack, Typography } from "@mui/material";
+import { Stack, Tooltip, Typography } from "@mui/material";
 import React from "react";
 
 interface Props {
@@ -16,7 +16,9 @@ const getDayNameFromDate = (dateString: string): string => {
 const SimpleForecast = ({ date, mintemp, maxtemp }: Props): React.JSX.Element => {
     return (
         <Stack spacing={1}>
-            <Typography fontWeight={600}>{getDayNameFromDate(date)}</Typography>
+            <Tooltip title={date} placement="top-start" arrow>
+                <Typography fontWeight={600}>{getDayNameFromDate(date)}</Typography>
+            </Tooltip>
             <Stack direction={"row"} spacing={1}>
                 <Typography fontWeight={600}>{mintemp}º</Typography>
                 <Typography fontWeight={600}>{maxtemp}º</Typography>
