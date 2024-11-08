@@ -4,7 +4,6 @@ import LocationCityIcon from '@mui/icons-material/LocationCity';
 import ThermostatIcon from '@mui/icons-material/Thermostat';
 import { Divider, Paper, Skeleton, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Tooltip, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import useCustomTheme from "../../hooks/useCustomTheme";
 import Weather from "../../interfaces/Weather";
 import RequestApi from '../../services/RequestApi';
 
@@ -15,7 +14,6 @@ const capitals = [
 ]
 
 const CapitalClimates = (): React.JSX.Element => {
-    const { theme } = useCustomTheme();
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [weatherData, setWeatherData] = useState<Record<string, Weather | null>>({});
 
@@ -42,7 +40,7 @@ const CapitalClimates = (): React.JSX.Element => {
 
     return (
         <Stack spacing={2} width={"100%"} >
-            <Divider color={theme.palette.text.primary} variant='fullWidth' />
+            <Divider variant='fullWidth' />
             <Typography variant='h4' textAlign={'left'} fontWeight={600}>Brazil Capitals</Typography>
             {isLoading ? (
                 <Paper style={{ padding: '5px', display: 'flex', flexDirection: 'column', gap: '5px' }}>
@@ -52,7 +50,7 @@ const CapitalClimates = (): React.JSX.Element => {
                                 width: {
                                     xs: "100%"
                                 },
-                                height: "50px"
+                                height: "52px"
                             }} />
                         ))
                     }
