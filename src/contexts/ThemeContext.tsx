@@ -1,5 +1,5 @@
 import { createTheme, CssBaseline, Theme, ThemeProvider } from '@mui/material';
-import React, { createContext, useMemo, useState } from 'react';
+import React, { createContext, useLayoutEffect, useMemo, useState } from 'react';
 
 interface IThemeContext {
   theme: Theme,
@@ -88,8 +88,17 @@ export const CustomThemeProvider = ({ children }: Props): React.JSX.Element => {
   const theme = useMemo(() => (isDarkMode ? darkTheme : lightTheme), [isDarkMode]);
 
   const toggleTheme = () => {
-    setIsDarkMode(prevMode => !prevMode);
+    setIsDarkMode(prevMode => {
+      const newMode = !prevMode;
+      localStorage.setItem("theme", newMode ? 'dark' : 'light');
+      return newMode;
+    });
   };
+
+  useLayoutEffect(() => {
+    const systemTheme = localStorage.getItem("theme");
+    setIsDarkMode(systemTheme == "dark")
+  }, [])
 
   return (
     <ThemeContext.Provider value={{ theme, isDarkMode, toggleTheme }}>
