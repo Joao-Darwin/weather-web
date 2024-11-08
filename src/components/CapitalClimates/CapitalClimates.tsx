@@ -1,7 +1,8 @@
 import AirIcon from '@mui/icons-material/Air';
 import CloudIcon from '@mui/icons-material/Cloud';
 import ThermostatIcon from '@mui/icons-material/Thermostat';
-import { Divider, Grid2, Skeleton, Stack, Tooltip, Typography } from "@mui/material";
+import LocationCityIcon from '@mui/icons-material/LocationCity';
+import { Divider, Grid2, Paper, Skeleton, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Tooltip, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import useCustomTheme from "../../hooks/useCustomTheme";
 import Weather from "../../interfaces/Weather";
@@ -67,7 +68,7 @@ const CapitalClimates = (): React.JSX.Element => {
         <Stack spacing={2} width={"100%"} >
             <Divider color={theme.palette.text.primary} variant='fullWidth' />
             <Typography variant='h4' textAlign={'left'} fontWeight={600}>Brazil Capitals</Typography>
-            <Grid2 container>
+            {/* <Grid2 container>
                 <GridIcons />
                 <GridIcons disappearOnMobile />
             </Grid2>
@@ -101,7 +102,53 @@ const CapitalClimates = (): React.JSX.Element => {
                         )
                     }
                 </Grid2>
-            )}
+            )} */}
+            <TableContainer component={Paper}>
+                <Table>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell align='center'>
+                                <Tooltip title="Temperature">
+                                    <ThermostatIcon />
+                                </Tooltip>
+                            </TableCell>
+                            <TableCell align='center'>
+                                <Tooltip title="Wind">
+                                    <AirIcon />
+                                </Tooltip>
+                            </TableCell>
+                            <TableCell align='center'>
+                                <Tooltip title="Climate">
+                                    <CloudIcon />
+                                </Tooltip>
+                            </TableCell>
+                            <TableCell align='center'>
+                                <Tooltip title="City">
+                                    <LocationCityIcon />
+                                </Tooltip>
+                            </TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {
+                            weatherData && (
+                                capitals.map((capital, index) => (
+                                    weatherData[capital] && (
+                                        <TableRow key={index}>
+                                            <TableCell align='center'>{weatherData[capital].temperature}</TableCell>
+                                            <TableCell align='center'>{weatherData[capital].wind}</TableCell>
+                                            <TableCell align='center'>{weatherData[capital].description}</TableCell>
+                                            <TableCell align='center'>
+                                                <Typography variant='body2' fontWeight={600}>{capital}</Typography>
+                                            </TableCell>
+                                        </TableRow>
+                                    )
+                                ))
+                            )
+                        }
+                    </TableBody>
+                </Table>
+            </TableContainer>
         </Stack>
     );
 }
